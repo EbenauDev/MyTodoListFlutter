@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'pages/homepage.dart';
+import 'package:my_todo_list/get_it_provider.dart';
+import 'package:my_todo_list/services/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    registrarDependencias();
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomePage(),
+      initialRoute: '/',
+      onGenerateRoute: (settings) => rotasProvider(settings),
     );
   }
 }
