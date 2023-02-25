@@ -16,6 +16,17 @@ class MyItem extends StatefulWidget {
 
 class _MyItemState extends State<MyItem> {
   @override
+  void initState() {
+    print('Data em formato UTC: ${DateTime.now().toIso8601String()}');
+    print('Data em formato UTC: ${DateTime.now().toIso8601String()}');
+    super.initState();
+  }
+
+  String toBrFormat(DateTime date) {
+    return "${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => widget.onTap(),
@@ -40,12 +51,16 @@ class _MyItemState extends State<MyItem> {
                   height: 22,
                   child: ClipOval(
                     child: Container(
-                      color: Colors.white,
-                      child: Icon(
-                        Icons.done,
-                        size: 18,
-                        color: Colors.green,
-                      ),
+                      color: widget.tarefa.isCompleted!
+                          ? Colors.green[50]
+                          : Colors.white,
+                      child: widget.tarefa.isCompleted!
+                          ? Icon(
+                              Icons.done,
+                              size: 18,
+                              color: Colors.green,
+                            )
+                          : Container(),
                     ),
                   ),
                 ),
@@ -62,6 +77,9 @@ class _MyItemState extends State<MyItem> {
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                         color: Colors.grey[700],
+                        decoration: widget.tarefa.isCompleted!
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
                       ),
                     ),
                     if (widget.tarefa.description != null)
@@ -84,7 +102,7 @@ class _MyItemState extends State<MyItem> {
                   width: 5,
                 ),
                 Text(
-                  '28/02/2023',
+                  toBrFormat(DateTime.parse(widget.tarefa.dueDate!)),
                   style: TextStyle(fontSize: 12),
                 ),
               ],

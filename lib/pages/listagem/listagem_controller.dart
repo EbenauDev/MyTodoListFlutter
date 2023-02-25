@@ -9,6 +9,10 @@ class ListagemController {
   }
 
   Future<List<TaskModel>> recuperarTarefas() async{
-      return _repository.recuperarTasks();
+      return _repository.recuperarTasksEmAberto();
+  }
+
+    Future<List<TaskModel>> recuperarTarefasCompletas() async{
+      return _repository.recuperarTasksCompletas();
   }
 }
