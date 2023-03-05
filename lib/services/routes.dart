@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_todo_list/pages/atualizar/atualizar_tarefa.dart';
-import 'package:my_todo_list/pages/listagem/listagem_viewmodel.dart';
+import 'package:my_todo_list/pages/listagem/listagem_view.dart';
 import 'package:my_todo_list/pages/nova/nova_tarefa.dart';
 
 rotasProvider(RouteSettings settings) {
@@ -10,7 +10,7 @@ rotasProvider(RouteSettings settings) {
     case '/':
       return MaterialPageRoute(
         settings: settings,
-        builder: (context) => listagemViewModel(),
+        builder: (context) => ListagemView(),
       );
     case '/nova-tarefa':
       return MaterialPageRoute(
@@ -25,7 +25,7 @@ rotasProvider(RouteSettings settings) {
     default:
       return MaterialPageRoute(
         settings: settings,
-        builder: (context) => listagemViewModel(),
+        builder: (context) => ListagemView(),
       );
   }
 }

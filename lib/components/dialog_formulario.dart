@@ -17,6 +17,8 @@ class _DialogFormularioState extends State<DialogFormulario> {
     });
   }
 
+  void mostrarDatePicker() {}
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -94,9 +96,6 @@ class _DialogFormularioState extends State<DialogFormulario> {
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
@@ -114,13 +113,44 @@ class _DialogFormularioState extends State<DialogFormulario> {
                                     onChanged: ((_) => onChangeCheckbox()),
                                   ),
                                 ),
-                                Text('Data de conclusão?')
+                                Text('Agendar')
                               ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: SizedBox(
+                            width: 180,
+                            child: TextField(
+                              enabled: possuiDataDeConclusao,
+                              onTap: mostrarDatePicker,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
+                                hintText: 'DD/MM/YYYY',
+                                enabledBorder: InputBorder.none,
+                              ),
                             ),
                           ),
                         )
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: null,
+                        child: Text('Salvar'),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 19, 76, 162),
+                          fixedSize: Size(145, 30),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),

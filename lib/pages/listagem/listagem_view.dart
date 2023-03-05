@@ -7,14 +7,14 @@ import 'package:my_todo_list/models/task_model.dart';
 import 'package:my_todo_list/pages/listagem/listagem_controller.dart';
 import 'package:my_todo_list/utils/my_item.dart';
 
-class listagemViewModel extends StatefulWidget {
-  const listagemViewModel({super.key});
+class ListagemView extends StatefulWidget {
+  const ListagemView({super.key});
 
   @override
-  State<listagemViewModel> createState() => _listagemViewModelState();
+  State<ListagemView> createState() => _ListagemViewState();
 }
 
-class _listagemViewModelState extends State<listagemViewModel> {
+class _ListagemViewState extends State<ListagemView> {
   late ListagemController _controller;
   late Future<List<TaskModel>> carregarTarefasEmAberto;
   late Future<List<TaskModel>> carregarTarefasCompletas;
@@ -34,7 +34,9 @@ class _listagemViewModelState extends State<listagemViewModel> {
     );
   }
 
-  void detalhesDaTask() {}
+  void detalhesDaTask() {
+    print('detalhesDaTask');
+  }
 
   @override
   Widget build(BuildContext context) {
