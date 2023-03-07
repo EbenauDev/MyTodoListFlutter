@@ -1,3 +1,0 @@
-extension DateTimeExtensoes on DateTime{
-
-}

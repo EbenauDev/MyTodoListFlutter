@@ -27,15 +27,12 @@ class _ListagemViewState extends State<ListagemView> {
   }
 
   void novaTarefa() {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (_) => DialogFormulario(),
-    );
+    Navigator.pushNamed(context, '/nova-tarefa');
   }
 
   void detalhesDaTask() {
     print('detalhesDaTask');
+    Navigator.pushNamed(context, '/detalhes-tarefa');
   }
 
   @override

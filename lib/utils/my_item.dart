@@ -17,8 +17,6 @@ class MyItem extends StatefulWidget {
 class _MyItemState extends State<MyItem> {
   @override
   void initState() {
-    print('Data em formato UTC: ${DateTime.now().toIso8601String()}');
-    print('Data em formato UTC: ${DateTime.now().toIso8601String()}');
     super.initState();
   }
 
