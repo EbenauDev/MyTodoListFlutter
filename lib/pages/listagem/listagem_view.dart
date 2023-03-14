@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-import 'package:my_todo_list/components/dialog_formulario.dart';
 import 'package:my_todo_list/get_it_provider.dart';
 import 'package:my_todo_list/models/task_model.dart';
 import 'package:my_todo_list/pages/listagem/listagem_controller.dart';
@@ -18,12 +16,19 @@ class _ListagemViewState extends State<ListagemView> {
   late ListagemController _controller;
   late Future<List<TaskModel>> carregarTarefasEmAberto;
   late Future<List<TaskModel>> carregarTarefasCompletas;
+  final pesquisaControllerField = TextEditingController();
+
   @override
   void initState() {
     _controller = serviceDependency.get<ListagemController>();
     carregarTarefasEmAberto = _controller.recuperarTarefas();
     carregarTarefasCompletas = _controller.recuperarTarefasCompletas();
     super.initState();
+  }
+
+  void pesquisar() {
+    if (pesquisaControllerField.text.isEmpty) return;
+    print('Valor do campo de filtro: ${pesquisaControllerField.text}');
   }
 
   void novaTarefa() {
@@ -33,6 +38,12 @@ class _ListagemViewState extends State<ListagemView> {
   void detalhesDaTask() {
     print('detalhesDaTask');
     Navigator.pushNamed(context, '/detalhes-tarefa');
+  }
+
+  @override
+  void dispose() {
+    pesquisaControllerField.dispose();
+    super.dispose();
   }
 
   @override
@@ -78,13 +89,14 @@ class _ListagemViewState extends State<ListagemView> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * .7,
                           child: TextFormField(
+                            controller: pesquisaControllerField,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                             ),
                             cursorColor: Colors.white,
-                            decoration: InputDecoration(
-                              hintText: 'Search...',
+                            decoration: const InputDecoration(
+                              hintText: 'Pesquisar...',
                               hintStyle: TextStyle(color: Colors.white),
                               errorBorder: InputBorder.none,
                               border: InputBorder.none,
@@ -98,7 +110,7 @@ class _ListagemViewState extends State<ListagemView> {
                             width: 40,
                             child: ClipOval(
                               child: TextButton(
-                                onPressed: novaTarefa,
+                                onPressed: pesquisar,
                                 child: Icon(
                                   Icons.search,
                                   size: 18,
